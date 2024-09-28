@@ -7,7 +7,7 @@ Session::init();
 Session::CheckSession();
 $sId =  Session::get('roleid');
 $link = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME);
-if ($sId === '1') { 
+if ($sId == '1') { 
 
 $pdf = new PDF('L','mm','A4');
 $pdf->SetFont('Arial','',12);

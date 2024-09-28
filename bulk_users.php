@@ -2,7 +2,7 @@
 include 'inc/header.php';
 Session::CheckSession();
 $sId =  Session::get('roleid');
-if ($sId === '1') { ?>
+if ($sId == '1') { ?>
 
 <?php
 
@@ -49,7 +49,7 @@ if (isset($userAdd)) {
                 </table>
           </div>
 <?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['import'])) {
+//if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['import'])) {
     if ( isset($_FILES["file"])) {
 
         //if there was an error uploading the file
@@ -74,11 +74,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['import'])) {
         
             $firstline = fgets ($file, 4096 );
                 //Gets the number of fields, in CSV-files the names of the fields are mostly given in the first line
-            $num = strlen($firstline) - strlen(str_replace(",", "", $firstline));
+            $num = strlen($firstline) - strlen(str_replace(";", "", $firstline));
         
                 //save the different fields of the firstline in an array called fields
             $fields = array();
-            $fields = explode( ",", $firstline, ($num+1) );
+            $fields = explode( ";", $firstline, ($num+1) );
         
             $line = array();
             $i = 0;
@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['import'])) {
             while ( $line[$i] = fgets ($file, 4096) ) {
         
                 $dsatz[$i] = array();
-                $dsatz[$i] = explode( ",", $line[$i], ($num+1) );
+                $dsatz[$i] = explode( ";", $line[$i], ($num+1) );
         
                 $i++;
             }
@@ -138,14 +138,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['import'])) {
         </div>
       </div>
 
-<?php
+<?php/*
 }else{
 
   header('Location:index.php');
 
 
 
-}
+}*/
  ?>
 
   <?php
